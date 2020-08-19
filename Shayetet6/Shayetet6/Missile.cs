@@ -9,7 +9,14 @@ namespace Shayetet6
         public string MissileType{ get; protected set; }
         public bool IsFailed { get; protected set; }
         public double TechniqueChance { get; protected set; }
-        
+        public int Distance { get; set; }
+        public Missile(string missileType, double chance, int distance)
+        {
+            TechniqueChance = chance;
+            MissileType = missileType;
+            IsFailed = false;
+            Distance = distance;
+        }
         public void Fail()
         {
             IsFailed = true;
