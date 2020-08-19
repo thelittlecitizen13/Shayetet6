@@ -13,6 +13,7 @@ namespace Shayetet6
         public List<Missile> AllMissiles { get; set; }
         public Dictionary<string, int> MissileTypeCounter { get; set; }
         public Menu<int> LauncherMenu { get; set; }
+        public LauncherHandler MyHandler { get; private set; }
         public MissileLauncher(string name, int capacity)
         {
             Name = name;
@@ -20,6 +21,7 @@ namespace Shayetet6
             Capacity = capacity;
             currentAmount = 0;
             MissileTypeCounter = new Dictionary<string, int>();
+            MyHandler = new LauncherHandler(this);
         }
         protected void UpdateTypes()
         {
