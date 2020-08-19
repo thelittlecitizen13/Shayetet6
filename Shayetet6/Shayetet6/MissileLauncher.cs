@@ -12,7 +12,7 @@ namespace Shayetet6
         public int currentAmount { get; set; }
         public List<Missile> AllMissiles { get; set; }
         public Dictionary<string, int> MissileTypeCounter { get; set; }
-        public Menu<int> LauncherMenu { get; set; }
+        public NumericMenu LauncherMenu { get; set; }
         public LauncherHandler MyHandler { get; private set; }
         public MissileLauncher(string name, int capacity)
         {
@@ -23,6 +23,7 @@ namespace Shayetet6
             MissileTypeCounter = new Dictionary<string, int>();
             MyHandler = new LauncherHandler(this);
             LauncherMenu = LauncherMenuCreator.LauncherMainMenuCreator(MyHandler);
+            UpdateTypes();
         }
         protected void UpdateTypes()
         {
@@ -35,6 +36,14 @@ namespace Shayetet6
         public void Run()
         {
             LauncherMenu.Run();
+        }
+        public void AddMissile(Missile m)
+        {
+            Capacity++;
+            currentAmount++;
+            AllMissiles.Add(m);
+            MissileTypeCounter[m.MissileType]++;
+            Console.WriteLine($"{m.MissileType} missile added successfully");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Shayetet6
     public class LauncherMenuCreator
     {
 
-        public static Menu<int> LauncherMainMenuCreator(LauncherHandler LaunHandler)
+        public static NumericMenu LauncherMainMenuCreator(LauncherHandler LaunHandler)
         {
             Dictionary<int, Option> MainDict = new Dictionary<int, Option>()
             {

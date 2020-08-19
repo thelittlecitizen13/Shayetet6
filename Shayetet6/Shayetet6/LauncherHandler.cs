@@ -13,7 +13,7 @@ namespace Shayetet6
         }
         public void AddMissle()
         {
-
+            Launcher.AddMissile(MissleFactory.CreateMissile());
         }
         public void RemoveMissile()
         {
