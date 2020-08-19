@@ -16,7 +16,7 @@ namespace Shayetet6
                 {3, new Option(LaunHandler.ShowReport, "Inventory report") } , {4, new Option(LaunHandler.RemoveMissile, "Clean out missiles") } ,
                 {5, new Option(LaunHandler.AddMissle, "Shutdown the S6ML") }
             };
-            return new NumericMenu(MainDict, "Shayetet-6 Main Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true);
+            return new NumericMenu(MainDict, "Shayetet-6 Main Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true, false);
         }
     }
 }
