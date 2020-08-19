@@ -5,11 +5,11 @@ using MenuBuilder;
 
 namespace Shayetet6
 {
-    class LauncherMenuCreator
+    public class LauncherMenuCreator
     {
         public Menu<int> LauncherMainMenuCreator()
         {
-
+            
         }
     }
 }

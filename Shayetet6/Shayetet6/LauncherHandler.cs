@@ -11,6 +11,21 @@ namespace Shayetet6
         {
             Launcher = launcher;
         }
+        public void AddMissle()
+        {
 
+        }
+        public void RemoveMissile()
+        {
+
+        }
+        public void ShowReport()
+        {
+
+        }
+        public void LaunchMissiles()
+        {
+
+        }
     }
 }
