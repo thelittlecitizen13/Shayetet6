@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Shayetet6
 {
-    public enum MissileTypes
+    public class MissileLauncher
     {
-        Torpedo,
-        Balistic,
-        Cruise
+
     }
 }

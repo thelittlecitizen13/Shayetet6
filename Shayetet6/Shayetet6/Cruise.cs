@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shayetet6
 {
-    class Cruise : Missile
+    public class Cruise : Missile
     {
         public Cruise(string missileType, double chance, int distance) : base(missileType, chance, distance)
         {
