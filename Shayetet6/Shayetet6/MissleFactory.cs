@@ -22,7 +22,7 @@ namespace Shayetet6
         }
         public static Missile CreateMissile()
         {
-            string type = UserInputValidator.ReadMissileTypeName();
+            string type = UserInputValidator.ReadMissileTypeName("Which Type of missile would you like to create?");
             return CreateMissile(type);
         }
     }

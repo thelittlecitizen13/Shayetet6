@@ -40,9 +40,9 @@ namespace Shayetet6
             }
             return choice;
         }
-        public static string ReadMissileTypeName()
+        public static string ReadMissileTypeName(string output)
         {
-            Console.WriteLine("Which Type of missile would you like to create?");
+            Console.WriteLine(output);
             Console.WriteLine("[" + String.Join(" / " , Enum.GetNames(typeof(MissileTypes))) + "]");
             string type= "";
             bool correct = false;
