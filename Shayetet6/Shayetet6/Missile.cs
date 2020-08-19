@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Shayetet6
 {
-    public abstract class Missle
+    public abstract class Missile
     {
-        public string Name { get; protected set; }
+        public string MissileType{ get; protected set; }
         public bool IsFailed { get; protected set; }
         public double TechniqueChance { get; protected set; }
+        
         public void Fail()
         {
             IsFailed = true;
