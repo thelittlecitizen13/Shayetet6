@@ -33,7 +33,7 @@ namespace Shayetet6
         }
         public void RemoveMissile()
         {
-
+            LaunHandler.RemoveMissile();
         }
         public void ExitSystem()
         {

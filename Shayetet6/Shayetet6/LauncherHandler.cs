@@ -35,9 +35,9 @@ namespace Shayetet6
             string type = UserInputValidator.ReadMissileTypeName("Enter missile type to launch:");
             Console.WriteLine("Enter amount of missiles to launch");
             int amount = UserInputValidator.ReadIntParser();
-            RemoveMissileChecker(type, amount);
+            LaunchissileChecker(type, amount);
         }
-        public void RemoveMissileChecker(string MissileType, int amount)
+        public void LaunchissileChecker(string MissileType, int amount)
         {
             int totalAmountOfType = Launcher.MissileTypeCounter[MissileType];
             int successfulLaunches = 0;
@@ -63,7 +63,6 @@ namespace Shayetet6
         }
         public void RemoveMissileFromInventory(Missile m)
         {
-
             Launcher.AllMissiles.Remove(m);
             Launcher.MissileTypeCounter[m.MissileType]--;
             Launcher.currentAmount--;
@@ -100,11 +99,31 @@ namespace Shayetet6
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"The are currently {Launcher.currentAmount} of missiles:");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
+            int count = 0;
             foreach (var missile in Launcher.AllMissiles)
             {
-                Console.WriteLine(missile.ToString());
+                Console.WriteLine($"{count} - {missile.ToString()}");
+                count++;
             }
             Console.ResetColor();
+        }
+        public void RemoveMissile()
+        {
+
+            ShowReport();
+            Console.WriteLine();
+            Console.WriteLine("Enter the index of the missile which you would like to remove");
+            int choice = UserInputValidator.ReadIntParser();
+            try
+            {
+                Missile m = Launcher.AllMissiles[choice];
+                RemoveMissileFromInventory(m);
+            }
+            catch
+            {
+                Console.WriteLine("No missile for this index");
+            }
+            
         }
     }
 }
