@@ -40,6 +40,7 @@ namespace Shayetet6
         public void RemoveMissileChecker(string MissileType, int amount)
         {
             int totalAmountOfType = Launcher.MissileTypeCounter[MissileType];
+            int successfulLaunches = 0;
             if (totalAmountOfType == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -48,19 +49,17 @@ namespace Shayetet6
                 return;
             }
 
-            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == true && mis.MissileType == MissileType).Take(amount).ToList();
+            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == false && mis.MissileType == MissileType).Take(amount).ToList();
             foreach (var missile in launchableMissiles)
             {
-                Launcher.AllMissiles.Remove(missile);
+                missile.Launch();
+                if (!missile.IsFailed)
+                {
+                    RemoveMissileFromInventory(missile);
+                    successfulLaunches++;
+                }
             }
-
-            if (launchableMissiles.Count < amount)
-            {
-                Console.WriteLine($"There where only {launchableMissiles.Count} launchable (not failed) missiles from type {MissileType}.");
-                Console.WriteLine($"All of them were launched!");
-                return;
-            }
-            Console.WriteLine($"{launchableMissiles.Count} missiles from type {MissileType} were launched.");
+            Console.WriteLine($"{successfulLaunches} successful launches from total of {launchableMissiles.Count} launchable missiles!");
         }
         public void RemoveMissileFromInventory(Missile m)
         {
@@ -71,21 +70,30 @@ namespace Shayetet6
         }
         public void LaunchAllMissiles()
         {
-            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == true).ToList();
+            int successfulLaunches = 0;
+            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == false).ToList();
+            if (launchableMissiles.Count == 0)
+            {
+                Console.WriteLine("No missiles to launch.");
+                return;
+            }
             int totalAmount = Launcher.currentAmount;
             foreach (var missile in launchableMissiles)
-            { 
-                RemoveMissileFromInventory(missile);
-            }
-            if (totalAmount > launchableMissiles.Count)
             {
-                Console.WriteLine($"{launchableMissiles.Count} missiles were launched!");
-                Console.WriteLine($"All other {totalAmount - launchableMissiles.Count} are failed missiles.");
+                missile.Launch();
+                if (!missile.IsFailed)
+                {
+                    RemoveMissileFromInventory(missile);
+                    successfulLaunches++;
+                }
+            }
+            if (successfulLaunches > 0)
+            {
+                Console.WriteLine($"{successfulLaunches} missiles were launched!");
+                Console.WriteLine($"All other {totalAmount - successfulLaunches} are failed missiles.");
             }
             else
-            {
-                Console.WriteLine($"all {totalAmount} missiles were launched!");
-            }
+                Console.WriteLine($"all {launchableMissiles.Count} launchable missiles were failed!");
         }
         public void ShowReport()
         {

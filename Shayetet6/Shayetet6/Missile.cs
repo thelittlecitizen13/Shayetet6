@@ -8,9 +8,9 @@ namespace Shayetet6
     {
         public string MissileType{ get; protected set; }
         public bool IsFailed { get; protected set; }
-        public double TechniqueChance { get; protected set; }
+        public int TechniqueChance { get; protected set; }
         public int Distance { get; set; }
-        public Missile(double chance, int distance)
+        public Missile(int chance, int distance)
         {
             TechniqueChance = chance;
             IsFailed = false;
@@ -20,13 +20,19 @@ namespace Shayetet6
         {
             IsFailed = true;
         }
-        public void ChangeTechnique(double chance)
+        public void ChangeTechnique(int chance)
         {
             TechniqueChance = chance;
         }
         public override string ToString()
         {
-            return $"Missile Type: {MissileType} | Failed: {IsFailed} | Distance: {Distance} | Hit chance: {TechniqueChance}";
+            return $"Missile Type: {MissileType} | Failed: {IsFailed} | Distance: {Distance} | Launch success rate: {TechniqueChance}%";
+        }
+        public void Launch()
+        {
+            Random rand = new Random();
+            int randomNumber = rand.Next(0, 100);
+            IsFailed = randomNumber > TechniqueChance;
         }
 
     }

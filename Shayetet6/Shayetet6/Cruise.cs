@@ -6,7 +6,7 @@ namespace Shayetet6
 {
     public class Cruise : Missile
     {
-        public Cruise(string missileType, double chance, int distance) : base(chance, distance)
+        public Cruise(string missileType, int chance, int distance) : base(chance, distance)
         {
             MissileType = "Cruise";
         }
