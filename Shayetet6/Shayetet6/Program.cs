@@ -6,7 +6,8 @@ namespace Shayetet6
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Patriot patriotLauncher = new Patriot("Patriot", 6);
+            patriotLauncher.Run();
         }
     }
 }
