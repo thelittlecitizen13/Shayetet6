@@ -12,7 +12,7 @@ namespace Shayetet6
         public int Distance { get; set; }
         public Missile(double chance, int distance)
         {
-            TechniqueChance = chance
+            TechniqueChance = chance;
             IsFailed = false;
             Distance = distance;
         }

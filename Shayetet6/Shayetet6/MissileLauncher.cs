@@ -22,6 +22,7 @@ namespace Shayetet6
             currentAmount = 0;
             MissileTypeCounter = new Dictionary<string, int>();
             MyHandler = new LauncherHandler(this);
+            LauncherMenu = LauncherMenuCreator.LauncherMainMenuCreator(MyHandler);
         }
         protected void UpdateTypes()
         {
@@ -30,6 +31,10 @@ namespace Shayetet6
                 if (!MissileTypeCounter.ContainsKey(mType))
                     MissileTypeCounter.Add(mType, 0);
             }
+        }
+        public void Run()
+        {
+            LauncherMenu.Run();
         }
     }
 }

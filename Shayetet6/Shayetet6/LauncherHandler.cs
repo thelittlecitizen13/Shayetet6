@@ -27,5 +27,9 @@ namespace Shayetet6
         {
 
         }
+        public void ExitSystem()
+        {
+
+        }
     }
 }
