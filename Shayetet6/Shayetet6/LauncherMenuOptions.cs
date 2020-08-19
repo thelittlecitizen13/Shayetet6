@@ -29,7 +29,7 @@ namespace Shayetet6
         }
         public void ShowReport()
         {
-
+            LaunHandler.ShowReport();
         }
         public void RemoveMissile()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using MenuBuilder;
@@ -38,54 +39,64 @@ namespace Shayetet6
         }
         public void RemoveMissileChecker(string MissileType, int amount)
         {
-            int currentAmountOfType = Launcher.MissileTypeCounter[MissileType];
-            if (currentAmountOfType == 0)
+            int totalAmountOfType = Launcher.MissileTypeCounter[MissileType];
+            if (totalAmountOfType == 0)
             {
-                Console.WriteLine("There are no missiles");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"There are no {MissileType} missiles to launch!");
+                Console.ResetColor();
                 return;
             }
-            if (currentAmountOfType < amount)
+
+            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == true && mis.MissileType == MissileType).Take(amount).ToList();
+            foreach (var missile in launchableMissiles)
             {
-                Console.WriteLine($"There where only {currentAmountOfType} missiles from type {MissileType}.");
+                Launcher.AllMissiles.Remove(missile);
+            }
+
+            if (launchableMissiles.Count < amount)
+            {
+                Console.WriteLine($"There where only {launchableMissiles.Count} launchable (not failed) missiles from type {MissileType}.");
                 Console.WriteLine($"All of them were launched!");
-                RemoveMissilesFromInventory(MissileType, currentAmountOfType);
                 return;
             }
-            Console.WriteLine($"{amount} missiles from type {MissileType} were launched.");
-            Console.WriteLine($"All of them were launched!");
-            RemoveMissilesFromInventory(MissileType, amount);
-            return;
+            Console.WriteLine($"{launchableMissiles.Count} missiles from type {MissileType} were launched.");
         }
-        public void RemoveMissilesFromInventory(string MissileType, int amount)
+        public void RemoveMissileFromInventory(Missile m)
         {
-            int count = 0;
-            foreach (var missile in Launcher.AllMissiles)
-            {
-                if (missile.MissileType == MissileType)
-                {
-                    count++;
-                    Launcher.AllMissiles.Remove(missile);
-                    Launcher.MissileTypeCounter[MissileType]--;
-                    Launcher.currentAmount--;
-                }
-                if (count == amount)
-                    return;
-            }
+
+            Launcher.AllMissiles.Remove(m);
+            Launcher.MissileTypeCounter[m.MissileType]--;
+            Launcher.currentAmount--;
         }
         public void LaunchAllMissiles()
         {
+            List<Missile> launchableMissiles = Launcher.AllMissiles.Where(mis => mis.IsFailed == true).ToList();
             int totalAmount = Launcher.currentAmount;
-            foreach (var missile in Launcher.AllMissiles)
-            {
-                Launcher.AllMissiles.Remove(missile);
-                Launcher.MissileTypeCounter[missile.MissileType]--;
-                Launcher.currentAmount--;
+            foreach (var missile in launchableMissiles)
+            { 
+                RemoveMissileFromInventory(missile);
             }
-            Console.WriteLine($"all {totalAmount} missiles were launched!");
+            if (totalAmount > launchableMissiles.Count)
+            {
+                Console.WriteLine($"{launchableMissiles.Count} missiles were launched!");
+                Console.WriteLine($"All other {totalAmount - launchableMissiles.Count} are failed missiles.");
+            }
+            else
+            {
+                Console.WriteLine($"all {totalAmount} missiles were launched!");
+            }
         }
         public void ShowReport()
         {
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"The are currently {Launcher.currentAmount} of missiles:");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            foreach (var missile in Launcher.AllMissiles)
+            {
+                Console.WriteLine(missile.ToString());
+            }
+            Console.ResetColor();
         }
     }
 }

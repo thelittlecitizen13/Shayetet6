@@ -24,6 +24,10 @@ namespace Shayetet6
         {
             TechniqueChance = chance;
         }
+        public override string ToString()
+        {
+            return $"Missile Type: {MissileType} | Failed: {IsFailed} | Distance: {Distance} | Hit chance: {TechniqueChance}";
+        }
 
     }
 }
