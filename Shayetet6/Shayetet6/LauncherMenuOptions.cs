@@ -11,9 +11,17 @@ namespace Shayetet6
         {
             LaunHandler = launcher;
         }
+        public void ShowLaunchMenu()
+        {
+            LauncherMenuCreator.LaunchMissilesMenu(this).Run();
+        }
         public void AddMissle()
         {
             LaunHandler.AddMissile(MissleFactory.CreateMissile());
+        }
+        public void TotalWar()
+        {
+            LaunHandler.LaunchAllMissiles();
         }
         public void LaunchMissiles()
         {

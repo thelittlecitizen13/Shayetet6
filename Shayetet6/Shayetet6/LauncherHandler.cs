@@ -49,13 +49,11 @@ namespace Shayetet6
                 Console.WriteLine($"There where only {currentAmountOfType} missiles from type {MissileType}.");
                 Console.WriteLine($"All of them were launched!");
                 RemoveMissilesFromInventory(MissileType, currentAmountOfType);
-                Launcher.MissileTypeCounter[MissileType] = 0;
                 return;
             }
-            Console.WriteLine($"There where only {currentAmountOfType} missiles from type {MissileType}.");
+            Console.WriteLine($"{amount} missiles from type {MissileType} were launched.");
             Console.WriteLine($"All of them were launched!");
             RemoveMissilesFromInventory(MissileType, amount);
-            Launcher.MissileTypeCounter[MissileType] -= amount;
             return;
         }
         public void RemoveMissilesFromInventory(string MissileType, int amount)
@@ -67,10 +65,23 @@ namespace Shayetet6
                 {
                     count++;
                     Launcher.AllMissiles.Remove(missile);
+                    Launcher.MissileTypeCounter[MissileType]--;
+                    Launcher.currentAmount--;
                 }
                 if (count == amount)
                     return;
             }
+        }
+        public void LaunchAllMissiles()
+        {
+            int totalAmount = Launcher.currentAmount;
+            foreach (var missile in Launcher.AllMissiles)
+            {
+                Launcher.AllMissiles.Remove(missile);
+                Launcher.MissileTypeCounter[missile.MissileType]--;
+                Launcher.currentAmount--;
+            }
+            Console.WriteLine($"all {totalAmount} missiles were launched!");
         }
         public void ShowReport()
         {
