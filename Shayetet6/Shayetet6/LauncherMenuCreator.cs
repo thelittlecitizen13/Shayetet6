@@ -32,7 +32,7 @@ namespace Shayetet6
             Console.WriteLine("Please choose on of the following techniques:");
             foreach (var tech in missileLauncher.LaunchTechniques)
             {
-                Console.WriteLine($"{tech.Key} - {tech.Value}");
+                Console.WriteLine($"{tech.Key} - {tech.Value.TechniqueName} ({tech.Value.TargetMissile})");
             }
         }
     }

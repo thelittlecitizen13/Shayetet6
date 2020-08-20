@@ -33,20 +33,6 @@ namespace Shayetet6
                     MissileTypeCounter.Add(mType, 0);
             }
         }
-        public void AddTechnique(ITechnique technique)
-        {
-            int lastDictKey;
-            try
-            {
-                lastDictKey = LaunchTechniques.Keys.Last();
-                lastDictKey++;
-            }
-            catch(ArgumentNullException)
-            {
-                lastDictKey = 0;
-            }
-            LaunchTechniques.Add(lastDictKey, technique);
 
-        }
     }
 }

@@ -26,7 +26,13 @@ namespace Shayetet6
         {
             string type = UserInputValidator.ReadMissileTypeName("Which Type of missile would you like to create?");
             LauncherMenuCreator.ShowTechniquesMenu(LaunHandler.Launcher);
+            Console.WriteLine("Please choose launch technique:");
             ITechnique tech = UserInputValidator.GetChoiceOfDictionary<int, ITechnique>(LaunHandler.Launcher.LaunchTechniques);
+            while (tech.TargetMissile != type)
+            {
+                Console.WriteLine($"The technique does not fit to {type} missile, please choose the currect on:");
+                tech = UserInputValidator.GetChoiceOfDictionary<int, ITechnique>(LaunHandler.Launcher.LaunchTechniques);
+            }
             return CreateMissile(type, tech);
         }
         

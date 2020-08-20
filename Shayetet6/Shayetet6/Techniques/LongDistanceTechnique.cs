@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Shayetet6
 {
-    class LongDistanceTechnique : ITechnique
+    class DistanceTechnique : ITechnique
     {
         public string TargetMissile { get; set; }
         public string TechniqueName { get; set; }
 
-        public LongDistanceTechnique(string missileType, string techName)
+        public DistanceTechnique(string missileType, string techName)
         {
             TargetMissile = missileType;
             TechniqueName = techName;

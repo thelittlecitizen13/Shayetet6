@@ -99,7 +99,7 @@ namespace Shayetet6
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"The are currently {Launcher.currentAmount} of missiles:");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            int count = 0;
+            int count = 1;
             foreach (var missile in Launcher.AllMissiles)
             {
                 Console.WriteLine($"{count} - {missile.ToString()}");
@@ -124,6 +124,21 @@ namespace Shayetet6
                 Console.WriteLine("No missile for this index");
             }
             
+        }
+        public void AddTechnique(ITechnique technique)
+        {
+            int lastDictKey;
+            try
+            {
+                lastDictKey = Launcher.LaunchTechniques.Keys.Last();
+                lastDictKey++;
+            }
+            catch (InvalidOperationException)
+            {
+                lastDictKey = 1;
+            }
+            Launcher.LaunchTechniques.Add(lastDictKey, technique);
+
         }
     }
 }
