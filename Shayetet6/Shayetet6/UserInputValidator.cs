@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 
 namespace Shayetet6
 {
@@ -45,20 +47,18 @@ namespace Shayetet6
         }
         public static string ReadMissileTypeName(string output)
         {
-            Console.WriteLine(output);
-            Console.WriteLine("[" + String.Join(" / " , Enum.GetNames(typeof(MissileTypes))) + "]");
-            string type= "";
-            bool correct = false;
-            while (!correct)
+            //Console.WriteLine(output);
+            //Console.WriteLine("[" + String.Join(" / " , Enum.GetNames(typeof(MissileTypes))) + "]");
+            int count = 1;
+            Dictionary<int, string> missileTypes = new Dictionary<int, string>();
+            foreach (string mtype in Enum.GetNames(typeof(MissileTypes)))
             {
-                type = Console.ReadLine();
-                if (!(Enum.GetNames(typeof(MissileTypes)).Contains(type)))
-                    Console.WriteLine("Type not exist. Please try again:");
-                else
-                    correct = true;
+                missileTypes.Add(count, mtype);
+                count++;
             }
-            return type;
-
+            LauncherMenuCreator.PrintMenuFromDict<int, string>(missileTypes, output);
+            return UserInputValidator.GetChoiceOfDictionary<int, string>(missileTypes);
+           
         }
         public static T GetChoiceOfDictionary<K, T>(Dictionary<int, T> dict)
         {
@@ -86,5 +86,6 @@ namespace Shayetet6
             }
             return distance;
         }
+        
     }
 }

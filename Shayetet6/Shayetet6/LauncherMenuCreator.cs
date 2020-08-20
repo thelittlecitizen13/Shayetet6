@@ -34,6 +34,20 @@ namespace Shayetet6
             {
                 Console.WriteLine($"{tech.Key} - {tech.Value.TechniqueName} ({tech.Value.TargetMissile})");
             }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Your choice:");
+        }
+        public static void PrintMenuFromDict<T, K>(Dictionary<T,K> dict, string output)
+        {
+            Console.WriteLine(output);
+            foreach (var tech in dict)
+            {
+                Console.WriteLine($"{tech.Key} - {tech.Value} ({tech.Value})");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Your choice:");
         }
     }
 }
