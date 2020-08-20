@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Shayetet6
+{
+    class LongDistanceTechnique : ITechnique
+    {
+        public string TargetMissile { get; set; }
+
+        public LongDistanceTechnique(string missileType)
+        {
+            TargetMissile = missileType;
+        }
+        public double CalculateChance()
+        {
+            Console.WriteLine("Please enter the target`s distance:");
+            int distance = UserInputValidator.ReadIntParser();
+            if (distance == 0)
+            {
+                Console.WriteLine("Missile has 100 launch success rate");
+                return 100;
+            }
+            return 100 - distance / 1500.0;
+        }
+    }
+}

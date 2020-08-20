@@ -10,7 +10,7 @@ namespace Shayetet6
         public static int ReadIntParser()
         {
             int choice = 0;
-            while (choice == 0)
+            while (0 >= choice)
             {
                 try
                 {
@@ -20,6 +20,8 @@ namespace Shayetet6
                 {
                     Console.WriteLine("Wrong input, please try again:");
                 }
+                if (choice < 0)
+                    Console.WriteLine("Wrong input, please try again:");
             }
             return choice;
         }
