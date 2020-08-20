@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using MenuBuilder;
+using Shayetet6.MenuHandlers;
 
 namespace Shayetet6
 {
@@ -30,7 +31,7 @@ namespace Shayetet6
             patroitHandler.AddMissile(MissileFactory.CreateMissile("LongDistance", longDistanceTech));
             patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
             patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
-            patroitHandler.Run();
+            MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler);
         }
     }
 }
