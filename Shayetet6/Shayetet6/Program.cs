@@ -10,16 +10,12 @@ namespace Shayetet6
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-=======
             LauncherController patroitHandler = CreatePatriot();
             MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler);
-
         }
 
         public static LauncherController CreatePatriot()
         {
->>>>>>> dev
             Patriot patriotLauncher = new Patriot("Patriot", 6);
             LauncherController patroitHandler = new LauncherController(patriotLauncher);
             ClassicTorpedoTechnique classicTorpedoTech = new ClassicTorpedoTechnique("Classic Torpedo Technique");
