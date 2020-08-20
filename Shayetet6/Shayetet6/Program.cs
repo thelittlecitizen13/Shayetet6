@@ -20,6 +20,16 @@ namespace Shayetet6
             patroitHandler.AddTechnique(classicCruiseTech);
             patroitHandler.AddTechnique(classicBalisticTech);
             patroitHandler.AddTechnique(longDistanceTech);
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Torpedo", classicTorpedoTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("LongDistance", longDistanceTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("LongDistance", longDistanceTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Balistic", classicBalisticTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Balistic", classicBalisticTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("LongDistance", longDistanceTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
+            patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
             patroitHandler.Run();
         }
     }

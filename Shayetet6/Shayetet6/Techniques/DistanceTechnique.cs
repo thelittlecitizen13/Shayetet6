@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shayetet6
 {
-    class DistanceTechnique : ITechnique
+    public class DistanceTechnique : ITechnique
     {
         public string TargetMissile { get; set; }
         public string TechniqueName { get; set; }
@@ -16,19 +16,18 @@ namespace Shayetet6
         }
         public double CalculateChance()
         {
-            Console.WriteLine($"Please enter the target`s distance for missile {TargetMissile} (1-1500):");
-            int distance = UserInputValidator.ReadIntParser();
-            
-            while (distance > 1500)
-            {
-                Console.WriteLine("Distance cannot be above 1500km. Please try again:");
-                distance = UserInputValidator.ReadIntParser();
-            }
+            int distance = UserInputValidator.CalculateDistance(1500, TargetMissile);
             if (distance == 1)
             {
                 Console.WriteLine("Missile has 100 launch success rate");
                 return 100;
             }
+            return 100 - distance / 1500.0;
+        }
+        public double CalculateChance(int distance)
+        {
+            if (distance == -1)
+                return CalculateChance();
             return 100 - distance / 1500.0;
         }
     }

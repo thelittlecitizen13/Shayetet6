@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shayetet6
 {
-    class ClassicCruiseTechnique : ITechnique
+    public class ClassicCruiseTechnique : ITechnique
     {
         public string TargetMissile { get; set; }
         public string TechniqueName { get; set; }
@@ -14,7 +14,7 @@ namespace Shayetet6
             TargetMissile = "Cruise";
             TechniqueName = techName;
         }
-        public double CalculateChance()
+        public double CalculateChance(int distance = -1)
         {
             return 20.0;
         }

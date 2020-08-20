@@ -32,6 +32,14 @@ namespace Shayetet6
             int randomNumber = rand.Next(0, 100);
             IsFailed = randomNumber > LaunchTechnique.CalculateChance();
         }
+        public void Launch(int distance)
+        {
+            Random rand = new Random();
+            int randomNumber = rand.Next(0, 100);
+            IsFailed = randomNumber > LaunchTechnique.CalculateChance(distance);
+
+
+        }
 
     }
 }

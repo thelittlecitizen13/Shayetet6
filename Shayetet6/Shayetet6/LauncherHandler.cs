@@ -77,6 +77,7 @@ namespace Shayetet6
                 return;
             }
             int totalAmount = Launcher.currentAmount;
+            int distance = UserInputValidator.CalculateDistance(1500);
             foreach (var missile in launchableMissiles)
             {
                 missile.Launch();

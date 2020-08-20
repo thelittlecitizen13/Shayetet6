@@ -74,5 +74,17 @@ namespace Shayetet6
             while (!contain);
             return dict[choice];
         }
+        public static int CalculateDistance(int maxDistance, string TargetMissile = "war")
+        {
+            Console.WriteLine($"Please enter the target`s distance for missile {TargetMissile} (1-{maxDistance}):");
+            int distance = UserInputValidator.ReadIntParser();
+
+            while (distance > 1500)
+            {
+                Console.WriteLine($"Distance cannot be above {maxDistance}km. Please try again:");
+                distance = UserInputValidator.ReadIntParser();
+            }
+            return distance;
+        }
     }
 }

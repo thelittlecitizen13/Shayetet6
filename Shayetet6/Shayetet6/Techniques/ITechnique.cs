@@ -8,6 +8,6 @@ namespace Shayetet6
     {
         public string TechniqueName { get; set; }
         public string TargetMissile { get; set; }
-        public double CalculateChance();
+        public double CalculateChance(int distance = -1);
     }
 }
