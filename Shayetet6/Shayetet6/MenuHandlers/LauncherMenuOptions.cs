@@ -6,34 +6,35 @@ namespace Shayetet6
 {
     public class LauncherMenuOptions
     {
-        public LauncherHandler LaunHandler { get; private set; }
-        public LauncherMenuOptions(LauncherHandler launcher)
+        public LauncherController LaunController { get; private set; }
+        public LauncherMenuOptions(LauncherController launcher)
         {
-            LaunHandler = launcher;
+            LaunController = launcher;
         }
         public void ShowLaunchMenu()
         {
-            LauncherMenuCreator.LaunchMissilesMenu(this).Run();
+            LauncherMenuRunner.LaunchMissilesMenu(this);
         }
         public void AddMissle()
         {
-            LaunHandler.AddMissile(MissleFactory.CreateMissile());
+            Missile m = MissileFactory.CreateMissile(LaunController);
+            LaunController.AddMissile(m);
         }
         public void TotalWar()
         {
-            LaunHandler.LaunchAllMissiles();
+            LaunController.LaunchAllMissiles();
         }
         public void LaunchMissiles()
         {
-            LaunHandler.LaunchMissile();
+            LaunController.LaunchMissile();
         }
         public void ShowReport()
         {
-            LaunHandler.ShowReport();
+            LaunController.ShowReport();
         }
         public void RemoveMissile()
         {
-            LaunHandler.RemoveMissile();
+            LaunController.RemoveMissile();
         }
         public void ExitSystem()
         {

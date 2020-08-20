@@ -7,20 +7,18 @@ using MenuBuilder;
 
 namespace Shayetet6
 {
-    public class LauncherHandler
+    public class LauncherController
     {
         public MissileLauncher Launcher { get; private set; }
         public LauncherMenuOptions LauncherOptions { get; private set; }
-        public NumericMenu LauncherMenu { get; set; }
-        public LauncherHandler(MissileLauncher ML)
+        public LauncherController(MissileLauncher ML)
         {
             Launcher = ML;
             LauncherOptions = new LauncherMenuOptions(this);
-            LauncherMenu = LauncherMenuCreator.LauncherMainMenuCreator(LauncherOptions);
         }
         public void Run()
         {
-            LauncherMenu.Run();
+            LauncherMenuRunner.RunLauncherMainMenu(LauncherOptions);
         }
         public void AddMissile(Missile m)
         {
@@ -77,9 +75,10 @@ namespace Shayetet6
                 return;
             }
             int totalAmount = Launcher.currentAmount;
+            int distance = UserInputValidator.CalculateDistance(1500);
             foreach (var missile in launchableMissiles)
             {
-                missile.Launch();
+                missile.Launch(distance);
                 if (!missile.IsFailed)
                 {
                     RemoveMissileFromInventory(missile);
@@ -99,7 +98,7 @@ namespace Shayetet6
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"The are currently {Launcher.currentAmount} of missiles:");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            int count = 0;
+            int count = 1;
             foreach (var missile in Launcher.AllMissiles)
             {
                 Console.WriteLine($"{count} - {missile.ToString()}");
@@ -124,6 +123,21 @@ namespace Shayetet6
                 Console.WriteLine("No missile for this index");
             }
             
+        }
+        public void AddTechnique(ITechnique technique)
+        {
+            int lastDictKey;
+            try
+            {
+                lastDictKey = Launcher.LaunchTechniques.Keys.Last();
+                lastDictKey++;
+            }
+            catch (InvalidOperationException)
+            {
+                lastDictKey = 1;
+            }
+            Launcher.LaunchTechniques.Add(lastDictKey, technique);
+
         }
     }
 }
