@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shayetet6.Techniques
+namespace Shayetet6
 {
     class ClassicCruiseTechnique : ITechnique
     {

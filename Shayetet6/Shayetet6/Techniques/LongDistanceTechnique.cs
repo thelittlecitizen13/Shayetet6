@@ -16,9 +16,15 @@ namespace Shayetet6
         }
         public double CalculateChance()
         {
-            Console.WriteLine("Please enter the target`s distance:");
+            Console.WriteLine($"Please enter the target`s distance for missile {TargetMissile} (1-1500):");
             int distance = UserInputValidator.ReadIntParser();
-            if (distance == 0)
+            
+            while (distance > 1500)
+            {
+                Console.WriteLine("Distance cannot be above 1500km. Please try again:");
+                distance = UserInputValidator.ReadIntParser();
+            }
+            if (distance == 1)
             {
                 Console.WriteLine("Missile has 100 launch success rate");
                 return 100;

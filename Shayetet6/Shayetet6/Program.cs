@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Generic;
 using MenuBuilder;
-using Shayetet6.Techniques;
 
 namespace Shayetet6
 {
