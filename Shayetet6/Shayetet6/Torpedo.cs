@@ -6,7 +6,7 @@ namespace Shayetet6
 {
     public class Torpedo : Missile
     {
-        public Torpedo(string missileType, int chance, int distance) : base(chance, distance)
+        public Torpedo(string missileType, ITechnique launchTechnique) : base(launchTechnique)
         {
             MissileType = "Torpedo";
         }

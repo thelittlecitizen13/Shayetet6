@@ -7,10 +7,12 @@ namespace Shayetet6
     class LongDistanceTechnique : ITechnique
     {
         public string TargetMissile { get; set; }
+        public string TechniqueName { get; set; }
 
-        public LongDistanceTechnique(string missileType)
+        public LongDistanceTechnique(string missileType, string techName)
         {
             TargetMissile = missileType;
+            TechniqueName = techName;
         }
         public double CalculateChance()
         {

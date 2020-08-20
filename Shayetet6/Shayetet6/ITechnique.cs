@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Shayetet6
 {
-    interface ITechnique
+    public interface ITechnique
     {
+        public string TechniqueName { get; set; }
         public string TargetMissile { get; set; }
         public double CalculateChance();
     }

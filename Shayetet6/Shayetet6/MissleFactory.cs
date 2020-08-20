@@ -4,26 +4,31 @@ using System.Text;
 
 namespace Shayetet6
 {
-    public static class MissleFactory
+    public static class MissileFactory
     {
-        public static Missile CreateMissile(string missileType)
+        public static Missile CreateMissile(string missileType, ITechnique technique)
         {
             switch(missileType)
             {
                 case "Torpedo":
-                    return new Torpedo(missileType, 100 , 1000);
+                    return new Torpedo(missileType, technique);
                 case "Cruise":
-                    return new Cruise(missileType, 20 ,3000) ;
+                    return new Cruise(missileType, technique) ;
                 case "Balistic":
-                    return new Balistic(missileType, 50, 150);
+                    return new Balistic(missileType, technique);
+                case "LongDistance":
+                    return new LongDistance(missileType, technique);
                 default:
                     return null;
             }
         }
-        public static Missile CreateMissile()
+        public static Missile CreateMissile(LauncherHandler LaunHandler)
         {
             string type = UserInputValidator.ReadMissileTypeName("Which Type of missile would you like to create?");
-            return CreateMissile(type);
+            LauncherMenuCreator.ShowTechniquesMenu(LaunHandler.Launcher);
+            ITechnique tech = UserInputValidator.GetChoiceOfDictionary<int, ITechnique>(LaunHandler.Launcher.LaunchTechniques);
+            return CreateMissile(type, tech);
         }
+        
     }
 }

@@ -8,31 +8,29 @@ namespace Shayetet6
     {
         public string MissileType{ get; protected set; }
         public bool IsFailed { get; protected set; }
-        public int TechniqueChance { get; protected set; }
-        public int Distance { get; set; }
-        public Missile(int chance, int distance)
+        public ITechnique LaunchTechnique { get; set; }
+        public Missile(ITechnique launchTechnique)
         {
-            TechniqueChance = chance;
             IsFailed = false;
-            Distance = distance;
+            LaunchTechnique = launchTechnique;
         }
         public void Fail()
         {
             IsFailed = true;
         }
-        public void ChangeTechnique(int chance)
+        public void ChangeTechnique(ITechnique technique)
         {
-            TechniqueChance = chance;
+            LaunchTechnique = technique;
         }
         public override string ToString()
         {
-            return $"Missile Type: {MissileType} | Failed: {IsFailed} | Distance: {Distance} | Launch success rate: {TechniqueChance}%";
+            return $"Missile Type: {MissileType} | Failed: {IsFailed} | Technique: {LaunchTechnique.TechniqueName}";
         }
         public void Launch()
         {
             Random rand = new Random();
             int randomNumber = rand.Next(0, 100);
-            IsFailed = randomNumber > TechniqueChance;
+            IsFailed = randomNumber > LaunchTechnique.CalculateChance();
         }
 
     }

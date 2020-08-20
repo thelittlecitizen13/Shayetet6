@@ -17,7 +17,8 @@ namespace Shayetet6
         }
         public void AddMissle()
         {
-            LaunHandler.AddMissile(MissleFactory.CreateMissile());
+            Missile m = MissileFactory.CreateMissile(LaunHandler);
+            LaunHandler.AddMissile(m);
         }
         public void TotalWar()
         {

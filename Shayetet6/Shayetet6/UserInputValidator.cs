@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,6 +60,19 @@ namespace Shayetet6
             return type;
 
         }
-        
+        public static T GetChoiceOfDictionary<K, T>(Dictionary<int, T> dict)
+        {
+            int choice;
+            bool contain;
+            do
+            {
+                choice = ReadIntParser();
+                contain = dict.ContainsKey(choice);
+                if (!contain)
+                    Console.WriteLine("Choice doesnt exist, please try again:");
+            }
+            while (!contain);
+            return dict[choice];
+        }
     }
 }

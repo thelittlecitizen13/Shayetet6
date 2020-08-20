@@ -8,6 +8,7 @@ namespace Shayetet6
     {
         Torpedo,
         Balistic,
-        Cruise
+        Cruise,
+        LongDistance
     }
 }

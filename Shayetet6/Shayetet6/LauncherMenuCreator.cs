@@ -26,5 +26,14 @@ namespace Shayetet6
             };
             return new StringMenu(MainDict, "Shayetet-6 Main Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true);
         }
+
+        public static void ShowTechniquesMenu(MissileLauncher missileLauncher)
+        {
+            Console.WriteLine("Please choose on of the following techniques:");
+            foreach (var tech in missileLauncher.LaunchTechniques)
+            {
+                Console.WriteLine($"{tech.Key} - {tech.Value}");
+            }
+        }
     }
 }
