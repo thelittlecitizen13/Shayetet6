@@ -22,10 +22,10 @@ namespace Shayetet6
                     return null;
             }
         }
-        public static Missile CreateMissile(LauncherHandler LaunHandler)
+        public static Missile CreateMissile(LauncherController LaunHandler)
         {
             string type = UserInputValidator.ReadMissileTypeName("Which Type of missile would you like to create?");
-            LauncherMenuCreator.ShowTechniquesMenu(LaunHandler.Launcher);
+            LauncherMenuRunner.ShowTechniquesMenu(LaunHandler.Launcher);
             ITechnique tech = UserInputValidator.GetChoiceOfDictionary<int, ITechnique>(LaunHandler.Launcher.LaunchTechniques);
             while (tech.TargetMissile != type)
             {

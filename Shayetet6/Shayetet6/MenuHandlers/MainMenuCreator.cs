@@ -7,16 +7,16 @@ namespace Shayetet6.MenuHandlers
 {
     class MainMenuCreator
     {
-        private LauncherHandler[] launcherHandlers;
-        public MainMenuCreator(params LauncherHandler[] handlers)
+        private LauncherController[] launcherController;
+        public MainMenuCreator(params LauncherController[] controllers)
         {
-            launcherHandlers = handlers;
+            launcherController = controllers;
             BuildMenu();
         }
 
         public void BuildMenu()
         {
-            if (launcherHandlers == null || launcherHandlers.Length == 0)
+            if (launcherController == null || launcherController.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No MissileLaunchers to manage!");
@@ -25,9 +25,10 @@ namespace Shayetet6.MenuHandlers
             }
             Dictionary<int, Option> MainDict = new Dictionary<int, Option>();
             int count = 1;
-            foreach(var handler in launcherHandlers)
+            foreach(var controller in launcherController)
             {
-                MainDict.Add(count, new Option(handler.Run, $"{handler.Launcher.Name} Menu"));
+                MainDict.Add(count, new Option(controller.Run, $"{controller.Launcher.Name} Menu"));
+                count++;
             }
             (new NumericMenu(MainDict, "Shayetet-6 Main Menu", "Welcome to Shayetet-6s Missile Launcher Controller, Commander", true, false)).Run();
         }

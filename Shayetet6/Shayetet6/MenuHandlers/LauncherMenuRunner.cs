@@ -5,9 +5,9 @@ using MenuBuilder;
 
 namespace Shayetet6
 {
-    public class LauncherMenuCreator
+    public class LauncherMenuRunner
     {
-        public static NumericMenu LauncherMainMenuCreator(LauncherMenuOptions LaunOptions)
+        public static void RunLauncherMainMenu(LauncherMenuOptions LaunOptions)
         {
             Dictionary<int, Option> MainDict = new Dictionary<int, Option>()
             {
@@ -15,15 +15,15 @@ namespace Shayetet6
                 {3, new Option(LaunOptions.ShowReport, "Inventory report") } , {4, new Option(LaunOptions.RemoveMissile, "Clean out missiles") } ,
                 {5, new Option(LaunOptions.ExitSystem, "Shutdown the S6ML") }
             };
-            return new NumericMenu(MainDict, $"{LaunOptions.LaunHandler.Launcher.Name} Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true, false);
+            (new NumericMenu(MainDict, $"{LaunOptions.LaunController.Launcher.Name} Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true, false)).Run();
         }
-        public static StringMenu LaunchMissilesMenu(LauncherMenuOptions LaunOptions)
+        public static void LaunchMissilesMenu(LauncherMenuOptions LaunOptions)
         {
             Dictionary<string, Option> MainDict = new Dictionary<string, Option>()
             {
                 {"TotalWar", new Option(LaunOptions.TotalWar, "Launch all missiles") } , {"Choose", new Option(LaunOptions.LaunchMissiles, "Choose missiles to launch") } ,
             };
-            return new StringMenu(MainDict, $"{LaunOptions.LaunHandler.Launcher.Name} Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true);
+            (new StringMenu(MainDict, $"{LaunOptions.LaunController.Launcher.Name} Menu", "Welcome to Shayetet-6s Missile Launcher, Commander", true)).Run();
         }
 
         public static void ShowTechniquesMenu(MissileLauncher missileLauncher)

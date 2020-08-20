@@ -56,7 +56,7 @@ namespace Shayetet6
                 missileTypes.Add(count, mtype);
                 count++;
             }
-            LauncherMenuCreator.PrintMenuFromDict<int, string>(missileTypes, output);
+            LauncherMenuRunner.PrintMenuFromDict<int, string>(missileTypes, output);
             return UserInputValidator.GetChoiceOfDictionary<int, string>(missileTypes);
            
         }

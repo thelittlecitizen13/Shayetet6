@@ -7,20 +7,18 @@ using MenuBuilder;
 
 namespace Shayetet6
 {
-    public class LauncherHandler
+    public class LauncherController
     {
         public MissileLauncher Launcher { get; private set; }
         public LauncherMenuOptions LauncherOptions { get; private set; }
-        public NumericMenu LauncherMenu { get; set; }
-        public LauncherHandler(MissileLauncher ML)
+        public LauncherController(MissileLauncher ML)
         {
             Launcher = ML;
             LauncherOptions = new LauncherMenuOptions(this);
-            LauncherMenu = LauncherMenuCreator.LauncherMainMenuCreator(LauncherOptions);
         }
         public void Run()
         {
-            LauncherMenu.Run();
+            LauncherMenuRunner.RunLauncherMainMenu(LauncherOptions);
         }
         public void AddMissile(Missile m)
         {
@@ -80,7 +78,7 @@ namespace Shayetet6
             int distance = UserInputValidator.CalculateDistance(1500);
             foreach (var missile in launchableMissiles)
             {
-                missile.Launch();
+                missile.Launch(distance);
                 if (!missile.IsFailed)
                 {
                     RemoveMissileFromInventory(missile);

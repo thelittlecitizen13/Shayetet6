@@ -10,9 +10,16 @@ namespace Shayetet6
     {
         static void Main(string[] args)
         {
+            LauncherController patroitHandler = CreatePatriot();
+            LauncherController patroitHandler2 = CreatePatriot();
+            MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler, patroitHandler2);
 
+        }
+
+        public static LauncherController CreatePatriot()
+        {
             Patriot patriotLauncher = new Patriot("Patriot", 6);
-            LauncherHandler patroitHandler = new LauncherHandler(patriotLauncher);
+            LauncherController patroitHandler = new LauncherController(patriotLauncher);
             ClassicTorpedoTechnique classicTorpedoTech = new ClassicTorpedoTechnique("Classic Torpedo Technique");
             ClassicCruiseTechnique classicCruiseTech = new ClassicCruiseTechnique("Classic Cruise Technique");
             ClassicBalisticTechnique classicBalisticTech = new ClassicBalisticTechnique("Classic Balistic Technique");
@@ -31,7 +38,7 @@ namespace Shayetet6
             patroitHandler.AddMissile(MissileFactory.CreateMissile("LongDistance", longDistanceTech));
             patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
             patroitHandler.AddMissile(MissileFactory.CreateMissile("Cruise", classicCruiseTech));
-            MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler);
+            return patroitHandler;
         }
     }
 }
