@@ -11,8 +11,7 @@ namespace Shayetet6
         static void Main(string[] args)
         {
             LauncherController patroitHandler = CreatePatriot();
-            LauncherController patroitHandler2 = CreatePatriot();
-            MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler, patroitHandler2);
+            MainMenuCreator mainMenu = new MainMenuCreator(patroitHandler);
 
         }
 
